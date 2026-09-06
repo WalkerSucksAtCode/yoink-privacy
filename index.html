@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yoink privacy policy</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      max-width: 42rem;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+      color: #1a1612;
+      background: #faf8f4;
+    }
+    @media (prefers-color-scheme: dark) {
+      body { color: #f5f0e8; background: #1a1612; }
+      a { color: #f5c542; }
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.05rem; margin-top: 1.75rem; }
+    p, li { margin: 0.6rem 0; }
+    ul { padding-left: 1.25rem; }
+    .meta { color: #666; font-size: 0.9rem; }
+    @media (prefers-color-scheme: dark) { .meta { color: #aaa; } }
+    a { color: #b8860b; }
+  </style>
+</head>
+<body>
+  <h1>Yoink privacy policy</h1>
+  <p class="meta">Last updated 5 September 2026</p>
+
+  <p>
+    Yoink is a browser extension for Firefox and Chromium-based browsers (including Brave).
+    It runs entirely on your device. Yoink does not operate a server, does not create accounts,
+    and does not send your browsing data to the developer.
+  </p>
+
+  <h2>What Yoink does</h2>
+  <p>
+    Yoink lists audio the current tab has already loaded and lets you save a copy when you choose.
+    It detects direct audio files, HLS and DASH playlists, and audio buffered through MediaSource
+    in the page. Yoink does not unwrap DRM (Widevine, FairPlay, or similar).
+  </p>
+  <p><strong>Only save audio you have the right to keep.</strong></p>
+
+  <h2>Data stored on your device</h2>
+  <ul>
+    <li>
+      <strong>Detected URLs and filenames</strong> — stored in the browser’s
+      <code>storage.session</code> API, scoped per tab. The list stays until the browser session
+      ends, the tab closes, or you clear the list from the popup.
+    </li>
+    <li>
+      <strong>Request headers (Cookie, Authorization, Referer, Origin)</strong> — kept in memory
+      only (not in <code>chrome.storage</code> or other persistent extension storage), scoped to
+      the tab, for up to 8 minutes. Yoink uses them only to fetch playlists and files from the
+      same sites the tab already loaded. They are not uploaded anywhere.
+    </li>
+    <li>
+      <strong>Buffered MediaSource chunks</strong> — held in the extension background context in
+      memory while you use the tab, so you can download concatenated buffered audio you already
+      played.
+    </li>
+  </ul>
+
+  <h2>Permissions and how they are used</h2>
+  <ul>
+    <li>
+      <strong><code>webRequest</code></strong> — observe-only. Yoink listens for audio-related
+      responses to detect media URLs and to stash request headers. It does not block or modify
+      network traffic.
+    </li>
+    <li>
+      <strong><code>downloads</code></strong> — saves a file to your computer when you click
+      Download (or use the context menu).
+    </li>
+    <li>
+      <strong><code>storage</code></strong> — uses <code>storage.session</code> for the per-tab
+      media list described above.
+    </li>
+    <li>
+      <strong><code>tabs</code></strong> — ties detections and downloads to the active tab and
+      clears data when a tab closes.
+    </li>
+    <li>
+      <strong><code>contextMenus</code></strong> — adds “Yoink this audio” on audio, video, and
+      link elements.
+    </li>
+    <li>
+      <strong><code>clipboardWrite</code></strong> — copies a media URL to the clipboard when you
+      click Copy in the popup.
+    </li>
+    <li>
+      <strong><code>scripting</code></strong> — re-injects content scripts after an extension
+      reload when needed.
+    </li>
+    <li>
+      <strong>Host permission <code>&lt;all_urls&gt;</code></strong> — content scripts on pages
+      you open scan <code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code>, and
+      <code>&lt;source&gt;</code> elements and hook MediaSource <code>appendBuffer</code> in the
+      page to reconstruct buffered audio. Yoink only runs on sites you visit; it does not browse
+      on its own.
+    </li>
+  </ul>
+
+  <h2>What the developer does not do</h2>
+  <ul>
+    <li>Collect, sell, or transfer user data</li>
+    <li>Use analytics or tracking</li>
+    <li>Run remote code — all extension code ships in the package you install</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy:
+    <a href="https://github.com/WalkerSucksAtCode">WalkerSucksAtCode</a>
+    on GitHub (<a href="https://github.com/WalkerSucksAtCode">https://github.com/WalkerSucksAtCode</a>).
+  </p>
+</body>
+</html>

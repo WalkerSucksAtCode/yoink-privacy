@@ -1,2 +1,7 @@
-# yoink-privacy
-Public privacy policy for the Yoink browser extension (Chrome Web Store listing).
+# Yoink privacy policy
+
+Canonical HTTPS page for the Chrome Web Store listing:
+
+**https://walkersucksatcode.github.io/yoink-privacy/**
+
+Source for this page lives in the Yoink project as `docs/privacy.html`.
